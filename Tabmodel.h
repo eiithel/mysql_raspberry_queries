@@ -26,9 +26,6 @@ public:
 
 	virtual void display()const = 0;
 
-	//	friend std::ofstream& operator<<(std::ofstream& ofs, const Tabmodel& c);//in order to write a sql formatted file
-
-
 
 
 };

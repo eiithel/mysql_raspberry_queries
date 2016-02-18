@@ -34,7 +34,7 @@ public:
 
 	virtual ~Pet();
 
-	void display()const;
+	virtual void display()const;
 
 	friend std::ofstream& operator<<(std::ofstream& ofs, const pet_t& c);
 

@@ -7,12 +7,7 @@
 
 #include "Tabmodel.h"
 
-Tabmodel::Tabmodel() {
-	// TODO Auto-generated constructor stub
+Tabmodel::Tabmodel() {}
 
-}
-
-Tabmodel::~Tabmodel() {
-	// TODO Auto-generated destructor stub
-}
+Tabmodel::~Tabmodel() {}
 

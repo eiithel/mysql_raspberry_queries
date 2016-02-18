@@ -17,7 +17,6 @@ Request::Request(const Request& f){
 
 }
 
-
 Request::~Request() {
 
 }

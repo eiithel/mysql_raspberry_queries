@@ -6,6 +6,7 @@
 #include "Tabmodel.h"
 #include "Connect.h"
 #include "Request.h"
+#include "Query.h"
 
 
 int main(){
@@ -30,20 +31,9 @@ int main(){
 	Connect con;
 	con.openConnexion();
 
+	Query query(con, PET, LOAD);
 
-	//	if(!mysql_query(&mysql, "INSERT INTO club VALUES( 3 ,'Topless')"))
-	//	{ printf("gabi enregistre");//pour marcher avoir exact le bn nombre d'arg en param
-	//	}
-
-	//	if(mysql_query(&mysql, "LOAD DATA LOCAL INFILE '~/Documents/json_data/pet.txt' INTO table pet")){
-	//		printf( "Failed to write to MySQL: Error: %s\n",  mysql_error(&mysql));
-	//	}
-
-	if(mysql_query(&con.mysql, "LOAD DATA LOCAL INFILE './pet.txt' INTO table pet")){
-		printf( "Failed to write to MySQL: Error: %s\n",  mysql_error(&con.mysql));
-	}else{
-		printf( "\nwriting to table club was sucessfull");
-	}
+	query.send();//query sent to the sql server
 
 	con.close();
 

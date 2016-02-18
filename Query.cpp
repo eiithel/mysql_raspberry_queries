@@ -1,0 +1,75 @@
+/*
+ * Query.cpp
+ *
+ *  Created on: 18 févr. 2016
+ *      Author: ethel
+ */
+
+#include "Query.h"
+
+Query::Query(): _table(PET), _type(INSERT), _file("'./pet.txt'"){
+
+}
+
+Query::~Query() {
+	// TODO Auto-generated destructor stub
+}
+
+Query::Query(Connect con, Table table, Type type): _con(con), _table(table),\
+		_type(type)
+		{
+		}
+
+void Query::setTable(Table tab){
+	_table = tab;
+}
+
+void Query::setType(Type type){
+	_type = type;
+}
+
+std::string Query::getTable(){
+	std::string str;
+	switch (_table) {
+	case PET:
+		str= "pet";
+		_file = "'./pet.txt'";
+
+		break;
+	case CLUB:
+		str= "club";
+		_file = "'./c.txt'";
+
+		break;
+	}
+	return str;
+}
+
+
+void Query::send(){
+	std::string squery, stable;
+	MYSQL sql = _con.mysql;
+	stable = getTable();
+
+	if(_type == LOAD){
+		squery = "LOAD DATA LOCAL INFILE " + _file + "INTO TABLE " + stable;
+	}
+
+	if(_type == INSERT){
+		squery = "INSERT INTO" + stable + "VALUES";
+		//TODO finish this part : add values to insert
+	}
+
+	if(mysql_query(&sql, squery.c_str())){
+		printf( "Failed to write to MySQL: Error: %s\n",  mysql_error(&sql));
+	}else{
+		printf( "\nwriting to table club was sucessfull");
+	}
+
+}
+
+
+void Query::updatefile(){
+//TODO to implement
+}
+

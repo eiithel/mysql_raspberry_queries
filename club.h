@@ -23,7 +23,7 @@ public:
 
 	virtual ~club();
 
-	void display()const;
+	virtual void display()const;
 
 	friend std::ofstream& operator<<(std::ofstream& ofs, const club_t& c);
 
