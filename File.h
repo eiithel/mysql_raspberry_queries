@@ -24,7 +24,9 @@
 class File {
 
 public:
-	File(const char * f);
+
+	File();
+	File(const File& f);
 	virtual ~File();
 
 	typedef struct club_t {
@@ -38,13 +40,9 @@ public:
 
 	friend std::ofstream& operator<<(std::ofstream& ofs, const club_t& c);//in order to write a sql formatted file
 
-
 private:
 
-	std::string mfilename;
-	club_t* mptr;
-	std::ofstream myfile2;
-	std::vector<Tabmodel*> polvector;//pour faire polymorphisme
+		std::vector<Tabmodel*> polvector;//pour faire polymorphisme
 
 protected:
 

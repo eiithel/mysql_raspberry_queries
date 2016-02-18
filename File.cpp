@@ -7,39 +7,18 @@
 
 #include "File.h"
 
-File::File(const char* f):mfilename(f),mptr(NULL){
-
-	myfile2.open ("example.txt", std::ios::app);
-
-	if (myfile2.fail())
-	{
-		std::cerr <<"Can't open " << mfilename << std::endl;
-		exit(1);
-	}
+File::File(){
 
 }
+
+File::File(const File& f){
+
+	polvector = f.polvector;
+
+}
+
 
 File::~File() {
-
-}
-
-
-void File::writetest(){
-
-	int size =3;
-
-	club_t test[size]={
-			{1,"AUS"},
-			{2, "Gabi"},
-			{3,"ethelou"},
-	};
-
-	mptr = test;
-
-	for(int i=0;i<size;i++){
-		myfile2 << test[i];
-		mptr++;
-	}
 
 }
 
@@ -51,7 +30,7 @@ void File::appendVector(Tabmodel* c){
 void File::writeFromvect(){
 
 	for(auto it = polvector.begin(); it!= polvector.end(); it++){
-		(*it)->display(myfile2);
+		(*it)->display();
 		delete((*it));
 	}
 

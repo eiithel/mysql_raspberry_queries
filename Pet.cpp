@@ -22,12 +22,15 @@ Pet::Pet(pet_t data){
 	mdata = data;
 }
 
-Pet::~Pet() {
-	// TODO Auto-generated destructor stub
-}
+Pet::~Pet() {}
 
-void Pet::display(std::ofstream& ofs)const{
-	ofs << this->mdata;
+static std::ofstream outp("pet.txt", std::ios::app);
+std::ofstream& Pet::filepet = outp;
+
+
+void Pet::display()const{
+
+	Pet::filepet << this->mdata;
 }
 
 

@@ -27,7 +27,6 @@ public:
 
 	}pet_t ;
 
-
 	Pet(pet_t data ={"fanny","sarah","cochon","f","1995-05-10", ""});//par defaut
 
 	Pet(string n, string o, string sp,\
@@ -35,17 +34,19 @@ public:
 
 	virtual ~Pet();
 
-	void display(std::ofstream& ofs)const;
-
+	void display()const;
 
 	friend std::ofstream& operator<<(std::ofstream& ofs, const pet_t& c);
+
+	static std::ofstream& filepet;
 
 
 private:
 
 	pet_t mdata;
 
-
 };
+
+
 
 #endif /* PET_H_ */

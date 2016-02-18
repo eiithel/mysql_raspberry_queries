@@ -10,14 +10,14 @@
 int main(){
 
 	printf("\nentree du programme");
-
+//
 	Pet *p3 = new Pet;
 	Pet *p4 = new Pet;
 
 	club *c1 = new club;
 	club *c2 = new club(2,"julien");
 
-	File file("example.txt");
+	File file;
 
 	file.appendVector(p3);
 	file.appendVector(p4);

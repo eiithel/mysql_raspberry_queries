@@ -20,8 +20,14 @@ club::~club() {
 	// TODO Auto-generated destructor stub
 }
 
-void club::display(std::ofstream& ofs)const{
-	ofs << this->mdata;
+static std::ofstream outc("club.txt", std::ios::app);
+std::ofstream& club::fileclub = outc;
+
+
+void club::display()const{
+//	club::fileclub.open("club.txt",std::ios::app);
+
+	club::fileclub << this->mdata;
 }
 
 std::ofstream& operator<<(std::ofstream& ofs, const club::club_t& c){

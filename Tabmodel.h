@@ -12,6 +12,7 @@
 #include <string>
 #include <fstream>
 #include <ostream>
+#include <iostream>
 
 
 
@@ -23,7 +24,7 @@ public:
 	virtual ~Tabmodel();
 
 
-	virtual void display(std::ofstream& ofs)const = 0;
+	virtual void display()const = 0;
 
 	//	friend std::ofstream& operator<<(std::ofstream& ofs, const Tabmodel& c);//in order to write a sql formatted file
 

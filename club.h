@@ -23,14 +23,19 @@ public:
 
 	virtual ~club();
 
-	void display(std::ofstream& ofs)const;
-
+	void display()const;
 
 	friend std::ofstream& operator<<(std::ofstream& ofs, const club_t& c);
 
+	static std::ofstream& fileclub;
 
+
+
+private:
 	club_t mdata;
 
 };
+
+
 
 #endif /* CLUB_H_ */
