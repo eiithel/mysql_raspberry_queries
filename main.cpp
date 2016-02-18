@@ -5,7 +5,7 @@
 #include "club.h"
 #include "Tabmodel.h"
 #include "Connect.h"
-#include "Request.h"
+#include "File.h"
 #include "Query.h"
 
 
@@ -16,7 +16,7 @@ int main(){
 	Connect con;
 	con.openConnexion();//connexion a la base
 
-	Request vectFile;
+	File vectFile;
 
 	Pet *p3 = new Pet;
 	//	p3->clean_s(); //ok
@@ -39,6 +39,7 @@ int main(){
 	query2.send();
 
 	con.close();
+
 
 	return 0;
 }

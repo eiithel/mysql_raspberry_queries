@@ -50,7 +50,7 @@ void Connect::openConnexion(){
 void Connect::close(){
 
 	mysql_close(&mysql);
-
+	printf( "\n\nEnd of the connexion");
 
 }
 
