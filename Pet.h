@@ -36,9 +36,15 @@ public:
 
 	virtual void display()const;
 
+
 	friend std::ofstream& operator<<(std::ofstream& ofs, const pet_t& c);
 
 	static std::ofstream& filepet;
+
+	static void clean_s();
+
+	virtual void clean();
+
 
 
 private:

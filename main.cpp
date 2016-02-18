@@ -13,20 +13,27 @@ int main(){
 
 	printf("\nentree du programme");
 
+
+	Request vectFile;
+
 	Pet *p3 = new Pet;
+	//	p3->clean_s(); //ok
+
 	Pet *p4 = new Pet;
 
 	club *c1 = new club;
 	club *c2 = new club(2,"julien");
 
-	Request file;
 
-	file.append(p3);
-	file.append(p4);
-	file.append(c1);
-	file.append(c2);
+	vectFile.append(c1);
+	vectFile.append(c2);
 
-	file.writeToFile();
+	vectFile.append(p3);
+	vectFile.append(p4);
+
+
+
+	vectFile.writeToFile();
 
 	Connect con;
 	con.openConnexion();

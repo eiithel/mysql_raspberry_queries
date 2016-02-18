@@ -35,4 +35,12 @@ void Request::writeToFile(){
 
 }
 
+//void Request::clean(){
+//
+//	for(auto it = polvector.begin(); it!= polvector.end(); it++){
+//		(*it)->clean();
+//		delete((*it));
+//	}
+//}
+
 

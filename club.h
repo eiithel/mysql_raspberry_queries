@@ -25,9 +25,14 @@ public:
 
 	virtual void display()const;
 
+
 	friend std::ofstream& operator<<(std::ofstream& ofs, const club_t& c);
 
 	static std::ofstream& fileclub;
+
+	static void clean_s();//erase content of fileclub
+
+	virtual void clean();
 
 
 

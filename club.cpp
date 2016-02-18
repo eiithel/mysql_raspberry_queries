@@ -23,9 +23,20 @@ club::~club() {
 static std::ofstream outc("club.txt", std::ios::app);
 std::ofstream& club::fileclub = outc;
 
+void club::clean_s(){
+
+	fileclub.close();
+	fileclub.open("club.txt", std::fstream::out | std::fstream::trunc);
+	fileclub.close();
+	fileclub.open("club.txt", std::ios::app);
+}
+
+void club::clean(){
+	club::clean_s();
+}
 
 void club::display()const{
-//	club::fileclub.open("club.txt",std::ios::app);
+	//	club::fileclub.open("club.txt",std::ios::app);
 
 	club::fileclub << this->mdata;
 }
