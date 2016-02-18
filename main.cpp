@@ -1,11 +1,11 @@
 #include <mysql/mysql.h>
 #include <stdio.h>
 #include <stdlib.h>
-#include "File.h"
 #include "Pet.h"
 #include "club.h"
 #include "Tabmodel.h"
 #include "Connect.h"
+#include "Request.h"
 
 
 int main(){
@@ -18,14 +18,14 @@ int main(){
 	club *c1 = new club;
 	club *c2 = new club(2,"julien");
 
-	File file;
+	Request file;
 
-	file.appendVector(p3);
-	file.appendVector(p4);
-	file.appendVector(c1);
-	file.appendVector(c2);
+	file.append(p3);
+	file.append(p4);
+	file.append(c1);
+	file.append(c2);
 
-	file.writeFromvect();
+	file.writeToFile();
 
 	Connect con;
 	con.openConnexion();

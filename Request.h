@@ -5,8 +5,8 @@
  *      Author: ethel
  */
 
-#ifndef FILE_H_
-#define FILE_H_
+#ifndef REQUEST_H_
+#define REQUEST_H_
 
 #include <cstdio>
 #include <string.h>
@@ -21,16 +21,16 @@
 #include "Pet.h"
 
 
-class File {
+class Request {
 
 public:
 
-	File();
-	File(const File& f);
-	virtual ~File();
+	Request();
+	Request(const Request& f);
+	virtual ~Request();
 
-	void writeFromvect();
-	void appendVector(Tabmodel* c);
+	void writeToFile();
+	void append(Tabmodel* c);
 
 private:
 
@@ -41,4 +41,4 @@ protected:
 
 };
 
-#endif /* FILE_H_ */
+#endif /* REQUEST_H_ */

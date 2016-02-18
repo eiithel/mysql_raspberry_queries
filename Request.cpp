@@ -5,29 +5,29 @@
  *      Author: ethel
  */
 
-#include "File.h"
+#include "Request.h"
 
-File::File(){
+Request::Request(){
 
 }
 
-File::File(const File& f){
+Request::Request(const Request& f){
 
 	polvector = f.polvector;
 
 }
 
 
-File::~File() {
+Request::~Request() {
 
 }
 
 
-void File::appendVector(Tabmodel* c){
+void Request::append(Tabmodel* c){
 	polvector.push_back(c);
 }
 
-void File::writeFromvect(){
+void Request::writeToFile(){
 
 	for(auto it = polvector.begin(); it!= polvector.end(); it++){
 		(*it)->display();
