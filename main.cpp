@@ -13,34 +13,30 @@ int main(){
 
 	printf("\nentree du programme");
 
+	Connect con;
+	con.openConnexion();//connexion a la base
 
 	Request vectFile;
 
 	Pet *p3 = new Pet;
 	//	p3->clean_s(); //ok
-
 	Pet *p4 = new Pet;
 
 	club *c1 = new club;
 	club *c2 = new club(2,"julien");
 
-
 	vectFile.append(c1);
 	vectFile.append(c2);
-
 	vectFile.append(p3);
 	vectFile.append(p4);
 
-
-
 	vectFile.writeToFile();
 
-	Connect con;
-	con.openConnexion();
-
 	Query query(con, PET, LOAD);
+	Query query2(con, CLUB, LOAD);
 
-	query.send();//query sent to the sql server
+	//query.send();//query sent to the sql server
+	query2.send();
 
 	con.close();
 

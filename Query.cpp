@@ -38,7 +38,7 @@ std::string Query::getTable(){
 		break;
 	case CLUB:
 		str= "club";
-		_file = "'./c.txt'";
+		_file = "'./club.txt'";
 
 		break;
 	}
