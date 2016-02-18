@@ -5,12 +5,13 @@
 #include "Pet.h"
 #include "club.h"
 #include "Tabmodel.h"
+#include "Connect.h"
 
 
 int main(){
 
 	printf("\nentree du programme");
-//
+
 	Pet *p3 = new Pet;
 	Pet *p4 = new Pet;
 
@@ -26,33 +27,9 @@ int main(){
 
 	file.writeFromvect();
 
-	MYSQL mysql;
+	Connect con;
+	con.openConnexion();
 
-	if(mysql_init(&mysql)==NULL)
-	{
-		printf("\nFailed to initate MySQL connection");
-		exit(1);
-	}
-
-	char enable_load_infile =1;
-
-	if(mysql_options(&mysql,MYSQL_OPT_LOCAL_INFILE, (const char *)&(enable_load_infile))){
-		printf( "Failed to write file to MySQL: Error: %s\n",mysql_error(&mysql));
-
-	}
-
-
-	if(!mysql_real_connect(&mysql,"localhost","pi","123","menagerie",0,NULL,0))
-	{
-
-		printf( "Failed to connect to MySQL: Error: %s\n",
-				mysql_error(&mysql));
-
-		exit(1);
-
-	}
-
-	printf("\nLogged on to database sucessfully");
 
 	//	if(!mysql_query(&mysql, "INSERT INTO club VALUES( 3 ,'Topless')"))
 	//	{ printf("gabi enregistre");//pour marcher avoir exact le bn nombre d'arg en param
@@ -62,13 +39,13 @@ int main(){
 	//		printf( "Failed to write to MySQL: Error: %s\n",  mysql_error(&mysql));
 	//	}
 
-	if(mysql_query(&mysql, "LOAD DATA LOCAL INFILE './example.txt' INTO table club")){
-		printf( "Failed to write to MySQL: Error: %s\n",  mysql_error(&mysql));
+	if(mysql_query(&con.mysql, "LOAD DATA LOCAL INFILE './pet.txt' INTO table pet")){
+		printf( "Failed to write to MySQL: Error: %s\n",  mysql_error(&con.mysql));
 	}else{
 		printf( "\nwriting to table club was sucessfull");
 	}
 
-	mysql_close(&mysql);
+	con.close();
 
 	return 0;
 }

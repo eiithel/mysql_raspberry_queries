@@ -37,9 +37,3 @@ void File::writeFromvect(){
 }
 
 
-std::ofstream& operator<<(std::ofstream& ofs, const File::club_t& c){
-	ofs << c.id << "\t" << c.name << "\n";
-	return ofs;
-}
-
-

@@ -29,20 +29,12 @@ public:
 	File(const File& f);
 	virtual ~File();
 
-	typedef struct club_t {
-		int id;
-		std::string name;
-	}club_t ;
-
-	void writetest();
 	void writeFromvect();
 	void appendVector(Tabmodel* c);
 
-	friend std::ofstream& operator<<(std::ofstream& ofs, const club_t& c);//in order to write a sql formatted file
-
 private:
 
-		std::vector<Tabmodel*> polvector;//pour faire polymorphisme
+	std::vector<Tabmodel*> polvector;//pour faire polymorphisme
 
 protected:
 
