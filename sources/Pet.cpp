@@ -24,15 +24,15 @@ Pet::Pet(pet_t data){
 
 Pet::~Pet() {}
 
-static std::ofstream outp("pet.txt", std::ios::app);
+static std::ofstream outp("./sources/pet.txt", std::ios::app);
 std::ofstream& Pet::filepet = outp;
 
 void Pet::clean_s(){
 
 	filepet.close();
-	filepet.open("pet.txt", std::fstream::out | std::fstream::trunc);
+	filepet.open("./sources/pet.txt", std::fstream::out | std::fstream::trunc);
 	filepet.close();
-	filepet.open("pet.txt", std::ios::app);
+	filepet.open("./sources/pet.txt", std::ios::app);
 }
 
 void Pet::clean(){

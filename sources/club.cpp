@@ -20,15 +20,15 @@ club::~club() {
 	// TODO Auto-generated destructor stub
 }
 
-static std::ofstream outc("club.txt", std::ios::app);
+static std::ofstream outc("./sources/club.txt", std::ios::app);
 std::ofstream& club::fileclub = outc;
 
 void club::clean_s(){
 
 	fileclub.close();
-	fileclub.open("club.txt", std::fstream::out | std::fstream::trunc);
+	fileclub.open("./sources/club.txt", std::fstream::out | std::fstream::trunc);
 	fileclub.close();
-	fileclub.open("club.txt", std::ios::app);
+	fileclub.open("./sources/club.txt", std::ios::app);
 }
 
 void club::clean(){

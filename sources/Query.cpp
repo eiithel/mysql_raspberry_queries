@@ -7,7 +7,7 @@
 
 #include "Query.h"
 
-Query::Query(): _table(PET), _type(INSERT), _file("'./pet.txt'"){
+Query::Query(): _table(PET), _type(INSERT), _file("'./sources/pet.txt'"){
 
 }
 
@@ -33,12 +33,12 @@ std::string Query::getTable(){
 	switch (_table) {
 	case PET:
 		str= "pet";
-		_file = "'./pet.txt'";
+		_file = "'./sources/pet.txt'";
 
 		break;
 	case CLUB:
 		str= "club";
-		_file = "'./club.txt'";
+		_file = "'./sources/club.txt'";
 
 		break;
 	}
