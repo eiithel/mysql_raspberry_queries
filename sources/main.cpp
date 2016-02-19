@@ -9,6 +9,28 @@
 #include "Query.h"
 #include "../MPU6050.h"
 #include <inttypes.h>
+#include <unistd.h>
+
+
+/*
+ * accelRange:
+				0 = +/- 2g
+				1 = +/- 4g
+				2 = +/- 8g
+				3 = +/-16g
+
+	DLPF
+		A_hz	A_del	G_hz	G_del	Fs_khz
+	0	260	0.0	256	0.98	8
+	1	184	2.0	188	1.9	1
+	2	94		3.0	98		2.8	1
+	3	44		4.9	42		4.8	1
+	4	21		8.5	20		8.3	1
+	5	10		13.8	10		13.4	1
+	6	5		19.0	5		18.6	1
+
+
+ */
 
 void getAx(int file){
 
@@ -45,7 +67,6 @@ void getay(int file){
 }
 
 void getAz(int file){
-
 	uint8_t MSB, LSB;
 	uint16_t az;
 
@@ -59,6 +80,23 @@ void getAz(int file){
 	} else {
 		printf("\naz contains the value: %d\n", az);
 	}
+
+}
+
+
+void initialize(int file,uint8_t accelRange){
+	uint8_t _aFSR  = accelRange << 3;
+	usleep(25);// make sure sensor has time to power up
+
+	i2c_smbus_write_byte_data(file,28,_aFSR);
+	i2c_smbus_write_byte_data(file, 31, 0b00000000);		//  no motion detect
+	i2c_smbus_write_byte_data(file, 35, 0b00000000);		//  no FIFO
+	i2c_smbus_write_byte_data(file, 36, 0b00000000);		//  no mstr I2C
+	i2c_smbus_write_byte_data(file, 55, 0b1110000);		//	configure interrupt  -- on when data ready, off on data read
+	i2c_smbus_write_byte_data(file, 56, 0b00000001);		//	interrupt on
+	i2c_smbus_write_byte_data(file, 106, 0b00000000);		//  no silly stuff
+	i2c_smbus_write_byte_data(file, 107, 0b00000001);		//  no sleep and clock off gyro_X
+	i2c_smbus_write_byte_data(file, 108, 0b00000000);
 
 }
 
@@ -87,7 +125,7 @@ int main(){
 		printf("\n talk to slave is ok");
 	}
 
-
+	initialize(file,3);
 	getAx(file); //todo a tester en premier
 
 	/*	le test a donné : connected to i2c bus
