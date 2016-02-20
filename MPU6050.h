@@ -206,7 +206,7 @@ THE SOFTWARE.
 #define MPU6050_SELF_TEST_ZG_1_BIT     0x04
 #define MPU6050_SELF_TEST_ZG_1_LENGTH  0x05
 
-#define MPU6050_TC_PWR_MODE_BIT     7
+#define MPU6050_TC_PWsh script eclipseR_MODE_BIT     7
 #define MPU6050_TC_OFFSET_BIT       6
 #define MPU6050_TC_OFFSET_LENGTH    6
 #define MPU6050_TC_OTP_BNK_VLD_BIT  0
@@ -477,6 +477,8 @@ public:
 	void getAy(int file);
 	void getAz(int file);
 	void convertAccData();
+	float getTemp(int file);
+
 
 	uint8_t getdevAddr();
 	mpu6050_raw getRawData();
@@ -484,7 +486,6 @@ public:
 private:
 	uint8_t _devAddr;
 	int _fd;
-	uint8_t _buffer[14];
 	mpu6050_raw _rawData;
 	AccData_g _accgData;
 };

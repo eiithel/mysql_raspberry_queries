@@ -91,7 +91,7 @@ void MPU6050::initialize(int file,uint8_t accelRange){
 
 void MPU6050::convertAccData(){
 
-	_accgData.axg = (float)(_rawData.x_accel-MPU6050_AXOFFSET)/MPU6050_AXGAIN;
+	_accgData.axg = (float)(_rawData.x_accel-MPU6050_AXOFFSET)/MPU6050_AXGAIN;// divided by sensibility to have value in g.
 	_accgData.ayg = (float)(_rawData.y_accel-MPU6050_AYOFFSET)/MPU6050_AYGAIN;
 	_accgData.azg = (float)(_rawData.z_accel-MPU6050_AZOFFSET)/MPU6050_AZGAIN;
 
@@ -107,6 +107,14 @@ uint8_t MPU6050::getdevAddr(){
 
 MPU6050::mpu6050_raw MPU6050::getRawData(){
 	return _rawData;
+}
+
+float MPU6050::getTemp(int file){
+	//todo test
+	int16_t T;
+	T = i2c_smbus_read_word_data(file, MPU6050_RA_TEMP_OUT_H);
+	return (float)T/325 + 35;////equation for temperature in degrees C from datasheet
+
 }
 
 
