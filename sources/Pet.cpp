@@ -10,16 +10,16 @@
 
 Pet::Pet(string n, string o, string sp,\
 		string sex, string b, string d){
-	mdata.name = n;
-	mdata.owner = o;
-	mdata.species = sp;
-	mdata.sex = sex;
-	mdata.birth = b;
-	mdata.death = d;
+	_mdata.name = n;
+	_mdata.owner = o;
+	_mdata.species = sp;
+	_mdata.sex = sex;
+	_mdata.birth = b;
+	_mdata.death = d;
 }
 
 Pet::Pet(pet_t data){
-	mdata = data;
+	_mdata = data;
 }
 
 Pet::~Pet() {}
@@ -44,7 +44,7 @@ void Pet::clean(){
 
 void Pet::display()const{
 
-	Pet::filepet << this->mdata;
+	Pet::filepet << this->_mdata;
 }
 
 

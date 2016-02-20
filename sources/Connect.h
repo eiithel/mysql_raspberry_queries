@@ -23,7 +23,7 @@ public:
 	virtual ~Connect();
 	void openConnexion();
 	void close();
-	MYSQL mysql;
+	MYSQL _mysql;
 
 private:
 

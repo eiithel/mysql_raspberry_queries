@@ -35,7 +35,7 @@ public:
 
 private:
 
-	std::vector<Tabmodel*> polvector;//pour faire polymorphisme
+	std::vector<Tabmodel*> _polvector;//pour faire polymorphisme
 
 protected:
 

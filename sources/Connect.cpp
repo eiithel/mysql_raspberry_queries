@@ -21,7 +21,7 @@ Connect::~Connect() {
 
 void Connect::openConnexion(){
 
-	if(mysql_init(&mysql)==NULL)
+	if(mysql_init(&_mysql)==NULL)
 	{
 		printf("\nFailed to initate MySQL connection");
 		exit(1);
@@ -29,16 +29,16 @@ void Connect::openConnexion(){
 
 	char enable_load_infile =1;
 
-	if(mysql_options(&mysql,MYSQL_OPT_LOCAL_INFILE, (const char *)&(enable_load_infile))){
-		printf( "Failed to write file to MySQL: Error: %s\n",mysql_error(&mysql));
+	if(mysql_options(&_mysql,MYSQL_OPT_LOCAL_INFILE, (const char *)&(enable_load_infile))){
+		printf( "Failed to write file to MySQL: Error: %s\n",mysql_error(&_mysql));
 
 	}
 
-	if(!mysql_real_connect(&mysql,"localhost",_usr.c_str(),_mp.c_str(),_db.c_str(),0,NULL,0))
+	if(!mysql_real_connect(&_mysql,"localhost",_usr.c_str(),_mp.c_str(),_db.c_str(),0,NULL,0))
 	{
 
 		printf( "Failed to connect to MySQL: Error: %s\n",
-				mysql_error(&mysql));
+				mysql_error(&_mysql));
 
 		exit(1);
 
@@ -49,7 +49,7 @@ void Connect::openConnexion(){
 
 void Connect::close(){
 
-	mysql_close(&mysql);
+	mysql_close(&_mysql);
 	printf( "\n\nEnd of the connexion");
 
 }

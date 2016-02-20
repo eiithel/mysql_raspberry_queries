@@ -8,12 +8,12 @@
 #include "club.h"
 
 club::club(club_t data){
-	mdata= data;
+	_mdata= data;
 }
 
 club::club(int id, std::string name){
-	mdata.id = id;
-	mdata.name = name;
+	_mdata.id = id;
+	_mdata.name = name;
 }
 
 club::~club() {
@@ -38,7 +38,7 @@ void club::clean(){
 void club::display()const{
 	//	club::fileclub.open("club.txt",std::ios::app);
 
-	club::fileclub << this->mdata;
+	club::fileclub << this->_mdata;
 }
 
 std::ofstream& operator<<(std::ofstream& ofs, const club::club_t& c){
