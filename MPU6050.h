@@ -441,11 +441,23 @@ THE SOFTWARE.
 
 // note: DMP code memory blocks defined at end of header file
 
+
+
 class MPU6050 {
 public:
+
+	typedef struct mpu6050_raw
+	{
+		int16_t x_accel;
+		int16_t y_accel;
+		int16_t z_accel;
+		int16_t temperature;
+
+	} mpu6050_raw;
+
 	MPU6050();
 	MPU6050(uint8_t address);
-    ~MPU6050();
+	~MPU6050();
 
 	void initialize(int file,uint8_t accelRange);
 	void getAx(int file);
@@ -453,12 +465,14 @@ public:
 	void getAz(int file);
 
 	uint8_t getdevAddr();
-
+	mpu6050_raw getRawData();
 
 private:
 	uint8_t _devAddr;
 	int _fd;
 	uint8_t _buffer[14];
+
+	mpu6050_raw _rawData;
 };
 
 
