@@ -1,17 +1,9 @@
-#include <mysql/mysql.h>
 #include <stdio.h>
 #include <stdlib.h>
 #include <inttypes.h>
 #include <unistd.h>
-#include "Pet.h"
-#include "club.h"
-#include "Tabmodel.h"
-#include "Connect.h"
-#include "File.h"
-#include "Query.h"
-#include "../MPU6050.h"
-#include "../i2cManager.h"
-
+#include "MPU6050.h"
+#include "i2cManager.h"
 
 
 int main(){
@@ -32,6 +24,22 @@ int main(){
 	mpu.getAz(file);
 
 	mpu.convertAccData();
+
+	/*
+The first test on the device gave me:
+
+ax contains the value: 13360
+
+ay contains the value: 9844
+
+az contains the value: 3072
+
+data converties:
+0.815430
+0.600830
+0.187500
+
+	 */
 
 	return 0;
 

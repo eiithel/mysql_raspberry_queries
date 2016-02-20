@@ -11,6 +11,9 @@
 #include <unistd.h>
 #include <linux/i2c-dev.h>
 #include <stdint.h>
+#include <stdio.h>
+#include <stdlib.h>
+
 
 class i2cManager {
 public:
