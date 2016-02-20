@@ -32,6 +32,10 @@ int main(){
 	mpu.getAz(file);
 
 	mpu.convertAccData();
+	float temp = mpu.getTemp(file);
+
+	printf("\nla temperature est de: %f", temp);
+
 
 	return 0;
 
