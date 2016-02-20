@@ -27,6 +27,7 @@ void MPU6050::getAx(int file){
 	MSB = i2c_smbus_read_byte_data(file, MPU6050_RA_ACCEL_XOUT_H);
 	LSB = i2c_smbus_read_byte_data(file, MPU6050_RA_ACCEL_XOUT_L);
 	ax = (((int16_t)MSB) << 8) | LSB;
+	_rawData.x_accel =ax;
 
 	if (ax < 0){
 		printf("\ni2c transaction failed.\n");
@@ -44,6 +45,7 @@ void MPU6050::getAy(int file){
 	MSB = i2c_smbus_read_byte_data(file, MPU6050_RA_ACCEL_YOUT_H);
 	LSB = i2c_smbus_read_byte_data(file, MPU6050_RA_ACCEL_YOUT_L);
 	ay = (((uint16_t)MSB) << 8) | LSB;
+	_rawData.y_accel = ay;
 
 	if (ay < 0){
 		printf("\ni2c transaction failed.\n");
@@ -60,6 +62,7 @@ void MPU6050::getAz(int file){
 	MSB = i2c_smbus_read_byte_data(file, MPU6050_RA_ACCEL_ZOUT_H);
 	LSB = i2c_smbus_read_byte_data(file, MPU6050_RA_ACCEL_ZOUT_L);
 	az = (((int16_t)MSB) << 8) | LSB;
+	_rawData.z_accel = az;
 
 	if (az < 0){
 		printf("\ni2c transaction failed.\n");
@@ -89,5 +92,10 @@ void MPU6050::initialize(int file,uint8_t accelRange){
 uint8_t MPU6050::getdevAddr(){
 	return _devAddr;
 }
+
+MPU6050::mpu6050_raw MPU6050::getRawData(){
+	return _rawData;
+}
+
 
 
