@@ -37,7 +37,7 @@ public:
 
 
 private:
-	club_t mdata;
+	club_t _mdata;
 
 };
 

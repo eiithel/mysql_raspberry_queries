@@ -49,7 +49,7 @@ public:
 
 private:
 
-	pet_t mdata;
+	pet_t _mdata;
 
 };
 

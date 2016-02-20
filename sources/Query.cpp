@@ -48,7 +48,7 @@ std::string Query::getTable(){
 
 void Query::send(){
 	std::string squery, stable;
-	MYSQL sql = _con.mysql;
+	MYSQL sql = _con._mysql;
 	stable = getTable();
 
 	if(_type == LOAD){

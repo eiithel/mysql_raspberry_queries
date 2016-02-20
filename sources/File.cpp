@@ -13,7 +13,7 @@ File::File(){
 
 File::File(const File& f){
 
-	polvector = f.polvector;
+	_polvector = f._polvector;
 
 }
 
@@ -23,12 +23,12 @@ File::~File() {
 
 
 void File::append(Tabmodel* c){
-	polvector.push_back(c);
+	_polvector.push_back(c);
 }
 
 void File::writeToFile(){
 
-	for(auto it = polvector.begin(); it!= polvector.end(); it++){
+	for(auto it = _polvector.begin(); it!= _polvector.end(); it++){
 		(*it)->display();
 		delete((*it));
 	}
