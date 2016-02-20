@@ -11,7 +11,9 @@ When the temperature will be too high a mail will be send to my google mail acco
 
 Of course for the moment I use a simple temperature sensor and that is not very useful but the modularity of the code will allow to add any type of sensor to the system.
 
-## raspberry side
+The UML diagram pictured below is showing the relationship between each class of the system. (Raspberry side)
+
+## Raspberry UML
 
 ![](https://github.com/eiithel/mysql_raspberry_queries/blob/master/documents/UML_UML_queries.png)
  
