@@ -10,11 +10,6 @@
 #include "File.h"
 #include "Query.h"
 #include "MPU6050table.h"
-#include "../MPU6050.h"
-#include "../i2cManager.h"
-
-
-
 
 int main(){
 
