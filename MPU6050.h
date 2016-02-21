@@ -497,15 +497,7 @@ public:
 
 	void connect();
 	void initialize(uint8_t accelRange);
-	void getAx();
-	void getAy();
-	void getAz();
-	void convertAccData();
-	float getTemp();
-	std::string getDate();
-
 	void retrieveData();
-
 
 	uint8_t getdevAddr();
 	raw_t getRawData();
@@ -517,6 +509,12 @@ public:
 private:
 	uint8_t _devAddr;
 	i2cManager _con;
+	void getAx();
+	void getAy();
+	void getAz();
+	void convertAccData();
+	float getTemp();
+	std::string getDate();
 
 };
 

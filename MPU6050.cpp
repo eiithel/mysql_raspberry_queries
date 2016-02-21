@@ -171,7 +171,7 @@ void MPU6050::initialize(uint8_t accelRange){
 	i2c_smbus_write_byte_data(file, 107, 0b00000001);		//  no sleep and clock off gyro_X
 	i2c_smbus_write_byte_data(file, 108, 0b00000000);
 
-	printf("\nMPU6050 Setup Complete");
+	PRINT_S("\nMPU6050 Setup Complete");
 
 }
 
@@ -228,7 +228,7 @@ float MPU6050::getTemp(){
  */
 
 void MPU6050::retrieveData(){
-	//todo faire une macro avec option debug pour pas afficher message de log à chaque fois.
+
 	this->getAx();
 	this->getAy();
 	this->getAz();
