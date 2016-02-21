@@ -61,13 +61,21 @@ THE SOFTWARE.
 #else
 #endif
 
-#define DEBUG 3
+#define DEBUG -1
 
 #if defined(DEBUG) && DEBUG > 0
 #define DEBUG_PRINT(fmt, args...) fprintf(stderr, "DEBUG: %s:%d:%s(): " fmt, \
 		__FILE__, __LINE__, __func__, ##args)
 #else
 #define DEBUG_PRINT(fmt, args...) /* Don't do anything in release builds */
+#endif
+
+#define LOGSENSOR -1
+
+#if defined(LOGSENSOR) && LOGSENSOR > 0
+#define PRINT_S(fmt, args...) fprintf(stderr, "SENSORS: " fmt, ##args)
+#else
+#define PRINT_S(fmt, args...)
 #endif
 
 #define MPU6050_AXOFFSET 0

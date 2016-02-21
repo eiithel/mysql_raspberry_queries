@@ -20,6 +20,8 @@ int main(){
 
 	printf("\nentree du programme");
 
+	DEBUG_PRINT("coucou\n");
+
 	MPU6050 mpu(0x68);
 	//	i2cManager i2c;
 

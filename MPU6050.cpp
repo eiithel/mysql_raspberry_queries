@@ -39,7 +39,7 @@ void MPU6050::getAx(){
 		printf("\ni2c transaction failed.\n");
 		exit(1);
 	} else {
-		printf("\nax contains the value: %d\n", ax);
+		PRINT_S("\nax contains the value: %d\n", ax);
 	}
 
 }
@@ -59,7 +59,7 @@ void MPU6050::getAy(){
 		printf("\ni2c transaction failed.\n");
 		exit(1);
 	} else {
-		printf("\nay contains the value: %d\n", ay);
+		PRINT_S("\nay contains the value: %d\n", ay);
 	}
 
 }
@@ -79,7 +79,7 @@ void MPU6050::getAz(){
 		printf("\ni2c transaction failed.\n");
 		exit(1);
 	} else {
-		printf("\naz contains the value: %d\n", az);
+		PRINT_S("\naz contains the value: %d\n", az);
 	}
 
 }
@@ -108,10 +108,12 @@ void MPU6050::convertAccData(){
 	_realData.ayg = (float)(_rawData.y_accel-MPU6050_AYOFFSET)/MPU6050_AYGAIN;
 	_realData.azg = (float)(_rawData.z_accel-MPU6050_AZOFFSET)/MPU6050_AZGAIN;
 
-	printf("\ndata converties: ");
-	printf("\n%f",_realData.axg);
-	printf("\n%f",_realData.ayg);
-	printf("\n%f",_realData.azg);
+
+
+	PRINT_S("\ndata converties: ");
+	PRINT_S("\n%f",_realData.axg);
+	PRINT_S("\n%f",_realData.ayg);
+	PRINT_S("\n%f",_realData.azg);
 }
 
 uint8_t MPU6050::getdevAddr(){
