@@ -90,6 +90,77 @@ void MPU6050::initialize(uint8_t accelRange){
 	int8_t _aFSR  = accelRange << 3;
 	usleep(25);// make sure sensor has time to power up
 
+	//Sets sample rate to 8000/1+7 = 1000Hz
+	i2c_smbus_write_byte_data(file, MPU6050_RA_SMPLRT_DIV, 0x07);
+	//Disable FSync, 256Hz DLPF
+	i2c_smbus_write_byte_data(file, MPU6050_RA_CONFIG, 0x00);
+	//Disable gyro self tests, scale of 500 degrees/s
+	i2c_smbus_write_byte_data(file, MPU6050_RA_GYRO_CONFIG, 0b00001000);
+	//Disable accel self tests, scale of +-2g, no DHPF
+	i2c_smbus_write_byte_data(file, MPU6050_RA_ACCEL_CONFIG, 0x00);
+	//Freefall threshold of |0mg|
+	i2c_smbus_write_byte_data(file, MPU6050_RA_FF_THR, 0x00);
+	//Freefall duration limit of 0
+	i2c_smbus_write_byte_data(file, MPU6050_RA_FF_DUR, 0x00);
+	//Motion threshold of 0mg
+	i2c_smbus_write_byte_data(file, MPU6050_RA_MOT_THR, 0x00);
+	//Motion duration of 0s
+	i2c_smbus_write_byte_data(file, MPU6050_RA_MOT_DUR, 0x00);
+	//Zero motion threshold
+	i2c_smbus_write_byte_data(file, MPU6050_RA_ZRMOT_THR, 0x00);
+	//Zero motion duration threshold
+	i2c_smbus_write_byte_data(file, MPU6050_RA_ZRMOT_DUR, 0x00);
+	//Disable sensor output to FIFO buffer
+	i2c_smbus_write_byte_data(file, MPU6050_RA_FIFO_EN, 0x00);
+
+	//AUX I2C setup
+	//Sets AUX I2C to single master control, plus other config
+	i2c_smbus_write_byte_data(file, MPU6050_RA_I2C_MST_CTRL, 0x00);
+	//Setup AUX I2C slaves
+	i2c_smbus_write_byte_data(file, MPU6050_RA_I2C_SLV0_ADDR, 0x00);
+	i2c_smbus_write_byte_data(file, MPU6050_RA_I2C_SLV0_REG, 0x00);
+	i2c_smbus_write_byte_data(file, MPU6050_RA_I2C_SLV0_CTRL, 0x00);
+	i2c_smbus_write_byte_data(file, MPU6050_RA_I2C_SLV1_ADDR, 0x00);
+	i2c_smbus_write_byte_data(file, MPU6050_RA_I2C_SLV1_REG, 0x00);
+	i2c_smbus_write_byte_data(file, MPU6050_RA_I2C_SLV1_CTRL, 0x00);
+	i2c_smbus_write_byte_data(file, MPU6050_RA_I2C_SLV2_ADDR, 0x00);
+	i2c_smbus_write_byte_data(file, MPU6050_RA_I2C_SLV2_REG, 0x00);
+	i2c_smbus_write_byte_data(file, MPU6050_RA_I2C_SLV2_CTRL, 0x00);
+	i2c_smbus_write_byte_data(file, MPU6050_RA_I2C_SLV3_ADDR, 0x00);
+	i2c_smbus_write_byte_data(file, MPU6050_RA_I2C_SLV3_REG, 0x00);
+	i2c_smbus_write_byte_data(file, MPU6050_RA_I2C_SLV3_CTRL, 0x00);
+	i2c_smbus_write_byte_data(file, MPU6050_RA_I2C_SLV4_ADDR, 0x00);
+	i2c_smbus_write_byte_data(file, MPU6050_RA_I2C_SLV4_REG, 0x00);
+	i2c_smbus_write_byte_data(file, MPU6050_RA_I2C_SLV4_DO, 0x00);
+	i2c_smbus_write_byte_data(file, MPU6050_RA_I2C_SLV4_CTRL, 0x00);
+	i2c_smbus_write_byte_data(file, MPU6050_RA_I2C_SLV4_DI, 0x00);
+
+	//MPU6050_RA_I2C_MST_STATUS //Read-only
+	//Setup INT pin and AUX I2C pass through
+	i2c_smbus_write_byte_data(file, MPU6050_RA_INT_PIN_CFG, 0x00);
+	//Enable data ready interrupt
+	i2c_smbus_write_byte_data(file, MPU6050_RA_INT_ENABLE, 0x00);
+
+	//Slave out, dont care
+	i2c_smbus_write_byte_data(file, MPU6050_RA_I2C_SLV0_DO, 0x00);
+	i2c_smbus_write_byte_data(file, MPU6050_RA_I2C_SLV1_DO, 0x00);
+	i2c_smbus_write_byte_data(file, MPU6050_RA_I2C_SLV2_DO, 0x00);
+	i2c_smbus_write_byte_data(file, MPU6050_RA_I2C_SLV3_DO, 0x00);
+	//More slave config
+	i2c_smbus_write_byte_data(file, MPU6050_RA_I2C_MST_DELAY_CTRL, 0x00);
+	//Reset sensor signal paths
+	i2c_smbus_write_byte_data(file, MPU6050_RA_SIGNAL_PATH_RESET, 0x00);
+	//Motion detection control
+	i2c_smbus_write_byte_data(file, MPU6050_RA_MOT_DETECT_CTRL, 0x00);
+	//Disables FIFO, AUX I2C, FIFO and I2C reset bits to 0
+	i2c_smbus_write_byte_data(file, MPU6050_RA_USER_CTRL, 0x00);
+	//Sets clock source to gyro reference w/ PLL  = for improved stability
+	i2c_smbus_write_byte_data(file, MPU6050_RA_PWR_MGMT_1, 0b00000010);
+	//Controls frequency of wakeups in accel low power mode plus the sensor standby modes
+	i2c_smbus_write_byte_data(file, MPU6050_RA_PWR_MGMT_2, 0x00);
+
+	i2c_smbus_write_byte_data(file, MPU6050_RA_FIFO_R_W, 0x00);
+
 	i2c_smbus_write_byte_data(file,28,_aFSR);
 	i2c_smbus_write_byte_data(file, 31, 0b00000000);		//  no motion detect
 	i2c_smbus_write_byte_data(file, 35, 0b00000000);		//  no FIFO
@@ -99,6 +170,8 @@ void MPU6050::initialize(uint8_t accelRange){
 	i2c_smbus_write_byte_data(file, 106, 0b00000000);		//  no silly stuff
 	i2c_smbus_write_byte_data(file, 107, 0b00000001);		//  no sleep and clock off gyro_X
 	i2c_smbus_write_byte_data(file, 108, 0b00000000);
+
+	printf("\nMPU6050 Setup Complete");
 
 }
 

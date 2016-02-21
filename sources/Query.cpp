@@ -67,7 +67,8 @@ void Query::send(){
 	if(mysql_query(&sql, squery.c_str())){
 		printf( "Failed to write to MySQL: Error: %s\n",  mysql_error(&sql));
 	}else{
-		printf( "\nwriting to table club was sucessfull");
+		printf( "\nwriting to table %s was sucessfull", stable.c_str());
+		printf("\n");
 	}
 
 }

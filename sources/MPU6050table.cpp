@@ -44,6 +44,7 @@ std::ofstream& operator<<(std::ofstream& ofs, const MPU6050_table::mpu_t& c){
 void MPU6050_table::getData(){
 
 	_mpu.connect();
+	_mpu.initialize(0);
 	usleep(25);
 	_mpu.retrieveData();
 
