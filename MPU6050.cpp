@@ -130,15 +130,6 @@ MPU6050::real_t MPU6050::getRealData(){
 float MPU6050::getTemp(){
 
 	int file = _con.getfd();
-	int16_t T;
-	T = i2c_smbus_read_word_data(file, MPU6050_RA_TEMP_OUT_H);
-	return (float)T/325 + 35;////equation for temperature in degrees C from datasheet
-
-}
-
-float MPU6050::getTemp2(){
-
-	int file = _con.getfd();
 	int8_t MSB, LSB;
 	int16_t T;
 	MSB = i2c_smbus_read_byte_data(file, MPU6050_RA_TEMP_OUT_H);
@@ -152,13 +143,21 @@ float MPU6050::getTemp2(){
 	return T;
 
 }
+/*
+ * tests gave:
+ *  tempraw: -4864
+	temp contains the value: 20.033846
+ *	ok
+ *
+ *
+ */
 
 void MPU6050::retrieveData(){
 	//todo faire une macro avec option debug pour pas afficher message de log à chaque fois.
 	this->getAx();
 	this->getAy();
 	this->getAz();
-	this->getTemp2();
+	this->getTemp();
 }
 
 
