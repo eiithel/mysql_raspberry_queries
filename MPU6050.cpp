@@ -7,20 +7,26 @@
 
 #include "MPU6050.h"
 
-MPU6050::MPU6050(): _devAddr(0x68), _fd(0){
+MPU6050::MPU6050(): _devAddr(0x68){
 }
 
 MPU6050::MPU6050(uint8_t address){
 	_devAddr = address;
-	_fd =0;
 
 }
 
 MPU6050::~MPU6050(){
 }
 
-void MPU6050::getAx(int file){
+void MPU6050::connect(){
+	_con.connectBus();
+	_con.connectSlave();
+}
 
+
+void MPU6050::getAx(){
+
+	int file = _con.getfd();
 	int8_t MSB, LSB;
 	int16_t ax;
 
@@ -38,7 +44,9 @@ void MPU6050::getAx(int file){
 
 }
 
-void MPU6050::getAy(int file){
+void MPU6050::getAy(){
+
+	int file = _con.getfd();
 	int8_t MSB, LSB;
 	int16_t ay;
 
@@ -53,9 +61,12 @@ void MPU6050::getAy(int file){
 	} else {
 		printf("\nay contains the value: %d\n", ay);
 	}
+
 }
 
-void MPU6050::getAz(int file){
+void MPU6050::getAz(){
+
+	int file = _con.getfd();
 	int8_t MSB, LSB;
 	int16_t az;
 
@@ -73,7 +84,9 @@ void MPU6050::getAz(int file){
 
 }
 
-void MPU6050::initialize(int file,uint8_t accelRange){
+void MPU6050::initialize(uint8_t accelRange){
+
+	int file = _con.getfd();
 	int8_t _aFSR  = accelRange << 3;
 	usleep(25);// make sure sensor has time to power up
 
@@ -91,30 +104,61 @@ void MPU6050::initialize(int file,uint8_t accelRange){
 
 void MPU6050::convertAccData(){
 
-	_accgData.axg = (float)(_rawData.x_accel-MPU6050_AXOFFSET)/MPU6050_AXGAIN;// divided by sensibility to have value in g.
-	_accgData.ayg = (float)(_rawData.y_accel-MPU6050_AYOFFSET)/MPU6050_AYGAIN;
-	_accgData.azg = (float)(_rawData.z_accel-MPU6050_AZOFFSET)/MPU6050_AZGAIN;
+	_realData.axg = (float)(_rawData.x_accel-MPU6050_AXOFFSET)/MPU6050_AXGAIN;// divided by sensibility to have value in g.
+	_realData.ayg = (float)(_rawData.y_accel-MPU6050_AYOFFSET)/MPU6050_AYGAIN;
+	_realData.azg = (float)(_rawData.z_accel-MPU6050_AZOFFSET)/MPU6050_AZGAIN;
 
 	printf("\ndata converties: ");
-	printf("\n%f",_accgData.axg);
-	printf("\n%f",_accgData.ayg);
-	printf("\n%f",_accgData.azg);
+	printf("\n%f",_realData.axg);
+	printf("\n%f",_realData.ayg);
+	printf("\n%f",_realData.azg);
 }
 
 uint8_t MPU6050::getdevAddr(){
 	return _devAddr;
 }
 
-MPU6050::mpu6050_raw MPU6050::getRawData(){
+MPU6050::raw_t MPU6050::getRawData(){
 	return _rawData;
 }
 
-float MPU6050::getTemp(int file){
-	//todo test
+MPU6050::real_t MPU6050::getRealData(){
+	return _realData;
+}
+
+
+float MPU6050::getTemp(){
+
+	int file = _con.getfd();
 	int16_t T;
 	T = i2c_smbus_read_word_data(file, MPU6050_RA_TEMP_OUT_H);
 	return (float)T/325 + 35;////equation for temperature in degrees C from datasheet
 
+}
+
+float MPU6050::getTemp2(){
+
+	int file = _con.getfd();
+	int8_t MSB, LSB;
+	int16_t T;
+	MSB = i2c_smbus_read_byte_data(file, MPU6050_RA_TEMP_OUT_H);
+	LSB = i2c_smbus_read_byte_data(file, MPU6050_RA_TEMP_OUT_L);
+	T = (((int16_t)MSB) << 8) | LSB;
+	_rawData.temp = T;
+
+	T = (float)T/325 + 35;
+	_realData.temp = T;
+
+	return T;
+
+}
+
+void MPU6050::retrieveData(){
+	//todo faire une macro avec option debug pour pas afficher message de log à chaque fois.
+	this->getAx();
+	this->getAy();
+	this->getAz();
+	this->getTemp2();
 }
 
 

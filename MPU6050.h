@@ -51,12 +51,23 @@ THE SOFTWARE.
 #include <errno.h>
 #include <stdio.h>
 #include <stdlib.h>
+#include "i2cManager.h"
 
 
 #ifdef __AVR__
 #include <avr/pgmspace.h>
 #else
 #endif
+
+//static bool debug;
+//#ifdef DEBUG_MPU
+//::debug = true;
+//#else
+//::debug = false;
+//#endif
+
+//#define DEBUG_MPU 1
+
 
 #define MPU6050_AXOFFSET 0
 #define MPU6050_AYOFFSET 0
@@ -452,42 +463,50 @@ THE SOFTWARE.
 class MPU6050 {
 public:
 
-	typedef struct mpu6050_raw
+	struct raw_t
 	{
 		int16_t x_accel;
 		int16_t y_accel;
 		int16_t z_accel;
-		int16_t temperature;
+		int16_t temp;
 
-	} mpu6050_raw;
+	};
 
-	typedef struct AccData_g
+	struct real_t
 	{
 		float axg;
 		float ayg;
 		float azg;
-	}AccData_g;
+		float temp;
+	};
 
 	MPU6050();
 	MPU6050(uint8_t address);
 	~MPU6050();
 
-	void initialize(int file,uint8_t accelRange);
-	void getAx(int file);
-	void getAy(int file);
-	void getAz(int file);
+	void connect();
+	void initialize(uint8_t accelRange);
+	void getAx();
+	void getAy();
+	void getAz();
 	void convertAccData();
-	float getTemp(int file);
+	float getTemp();
+	float getTemp2();
+
+	void retrieveData();
 
 
 	uint8_t getdevAddr();
-	mpu6050_raw getRawData();
+	raw_t getRawData();
+	real_t getRealData();
+
 
 private:
 	uint8_t _devAddr;
-	int _fd;
-	mpu6050_raw _rawData;
-	AccData_g _accgData;
+	raw_t _rawData;
+	real_t _realData;
+	i2cManager _con;
+
 };
 
 
