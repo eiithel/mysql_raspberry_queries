@@ -6,6 +6,7 @@
  */
 
 #include "i2cManager.h"
+
 #include <string>
 #include <sys/ioctl.h>
 #include <fcntl.h>

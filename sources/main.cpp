@@ -15,41 +15,11 @@ int main(){
 
 	printf("\nentree du programme");
 
-//	MPU6050 mpu(0x68);
-//	//	i2cManager i2c;
-//
-//	//	i2c.connectBus();
-//	//	i2c.connectSlave();
-//
-//	//	int file = i2c.getfd();
-//
-//	//	mpu.connect();
-//	//	mpu.initialize(0);//sensitivity settings = +-2g
-//	//	mpu.getAx();
-//	//	mpu.getAy();
-//	//	mpu.getAz();
-//	//
-//	//	mpu.convertAccData();
-//	//	float temp = mpu.getTemp();
-//	//
-//	//	printf("\nla temperature est de: %f", temp);
-//
-//	Connect con;
-//	con.openConnexion();//connexion a la base
-//
-//	File vectFile;
-//
-//	MPU6050_table *mcu = new MPU6050_table;
-//	mcu->getData();
-//
-//	//	Pet *p3 = new Pet;
-//	//	club *c2 = new club(2,"julien");
-//
-//	vectFile.append(mcu);
-//	vectFile.writeToFile();
-//
-//	Query query3(con, MPU, LOAD);
-//	query3.send();
+//	PRINT_S("\nlol\n");
+
+	MPU6050 mpu(0x68);
+	//	i2cManager i2c;
+
 
 //
 //	con.close();
