@@ -59,15 +59,14 @@ THE SOFTWARE.
 #else
 #endif
 
-//static bool debug;
-//#ifdef DEBUG_MPU
-//::debug = true;
-//#else
-//::debug = false;
-//#endif
+#define DEBUG 0
 
-//#define DEBUG_MPU 1
-
+#if defined(DEBUG) && DEBUG > 0
+ #define DEBUG_PRINT(fmt, args...) fprintf(stderr, "DEBUG: %s:%d:%s(): " fmt, \
+    __FILE__, __LINE__, __func__, ##args)
+#else
+ #define DEBUG_PRINT(fmt, args...) /* Don't do anything in release builds */
+#endif
 
 #define MPU6050_AXOFFSET 0
 #define MPU6050_AYOFFSET 0
@@ -491,7 +490,6 @@ public:
 	void getAz();
 	void convertAccData();
 	float getTemp();
-	float getTemp2();
 
 	void retrieveData();
 
