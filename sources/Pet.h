@@ -16,7 +16,7 @@ using namespace std;
 class Pet : public Tabmodel{
 public:
 
-	typedef struct pet_t {
+	struct pet_t {
 
 		string name;
 		string	owner;
@@ -25,7 +25,7 @@ public:
 		string birth;
 		string death;
 
-	}pet_t ;
+	};
 
 	Pet(pet_t data ={"fanny","sarah","cochon","f","1995-05-10", ""});//par defaut
 
@@ -43,7 +43,7 @@ public:
 
 	static void clean_s();
 
-	virtual void clean();
+//	virtual void clean();
 
 
 

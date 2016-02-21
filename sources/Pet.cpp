@@ -35,9 +35,9 @@ void Pet::clean_s(){
 	filepet.open("./sources/pet.txt", std::ios::app);
 }
 
-void Pet::clean(){
-	Pet::clean_s();
-}
+//void Pet::clean(){
+//	Pet::clean_s();
+//}
 
 
 

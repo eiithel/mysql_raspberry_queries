@@ -9,8 +9,10 @@
 #include "Connect.h"
 #include "File.h"
 #include "Query.h"
+#include "MPU6050table.h"
 #include "../MPU6050.h"
 #include "../i2cManager.h"
+
 
 
 
@@ -34,8 +36,28 @@ int main(){
 	//
 	//	mpu.convertAccData();
 	//	float temp = mpu.getTemp();
-
+	//
 	//	printf("\nla temperature est de: %f", temp);
+
+	Connect con;
+	con.openConnexion();//connexion a la base
+
+	File vectFile;
+
+	MPU6050_table *mcu = new MPU6050_table;
+	mcu->getData();
+
+	//	Pet *p3 = new Pet;
+	//	club *c2 = new club(2,"julien");
+
+	vectFile.append(mcu);
+	vectFile.writeToFile();
+
+	Query query3(con, MPU, LOAD);
+	query3.send();
+
+
+	con.close();
 
 	DEBUG_PRINT("Debugging is enabled.\n");
 	DEBUG_PRINT("Debug level: %d", (int) DEBUG);

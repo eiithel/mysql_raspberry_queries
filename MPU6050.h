@@ -51,6 +51,8 @@ THE SOFTWARE.
 #include <errno.h>
 #include <stdio.h>
 #include <stdlib.h>
+#include <string>
+#include <sstream>
 #include "i2cManager.h"
 
 
@@ -59,13 +61,13 @@ THE SOFTWARE.
 #else
 #endif
 
-#define DEBUG 0
+#define DEBUG 3
 
 #if defined(DEBUG) && DEBUG > 0
- #define DEBUG_PRINT(fmt, args...) fprintf(stderr, "DEBUG: %s:%d:%s(): " fmt, \
-    __FILE__, __LINE__, __func__, ##args)
+#define DEBUG_PRINT(fmt, args...) fprintf(stderr, "DEBUG: %s:%d:%s(): " fmt, \
+		__FILE__, __LINE__, __func__, ##args)
 #else
- #define DEBUG_PRINT(fmt, args...) /* Don't do anything in release builds */
+#define DEBUG_PRINT(fmt, args...) /* Don't do anything in release builds */
 #endif
 
 #define MPU6050_AXOFFSET 0
@@ -477,6 +479,7 @@ public:
 		float ayg;
 		float azg;
 		float temp;
+		std::string date;
 	};
 
 	MPU6050();
@@ -490,6 +493,7 @@ public:
 	void getAz();
 	void convertAccData();
 	float getTemp();
+	std::string getDate();
 
 	void retrieveData();
 
@@ -498,11 +502,11 @@ public:
 	raw_t getRawData();
 	real_t getRealData();
 
+	raw_t _rawData;
+	real_t _realData;
 
 private:
 	uint8_t _devAddr;
-	raw_t _rawData;
-	real_t _realData;
 	i2cManager _con;
 
 };

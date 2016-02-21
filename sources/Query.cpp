@@ -41,6 +41,10 @@ std::string Query::getTable(){
 		_file = "'./sources/club.txt'";
 
 		break;
+	case MPU:
+		str= "MPU6050";
+		_file = "'./sources/mpu.txt'";
+		break;
 	}
 	return str;
 }
@@ -70,6 +74,6 @@ void Query::send(){
 
 
 void Query::updatefile(){
-//TODO to implement
+	//TODO to implement
 }
 

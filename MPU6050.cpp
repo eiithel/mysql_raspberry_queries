@@ -157,7 +157,21 @@ void MPU6050::retrieveData(){
 	this->getAx();
 	this->getAy();
 	this->getAz();
+	this->convertAccData();
 	this->getTemp();
+}
+
+std::string MPU6050::getDate(){
+	std::ostringstream stream;
+	time_t rawtime;
+	tm * timeinfo;
+
+	time(&rawtime);
+	timeinfo = localtime(&rawtime);
+
+	stream << timeinfo->tm_hour <<"h "<<timeinfo->tm_min<<"mn "<<timeinfo->tm_sec <<"s";
+	_realData.date = stream.str();
+	return _realData.date;
 }
 
 

@@ -31,9 +31,9 @@ void club::clean_s(){
 	fileclub.open("./sources/club.txt", std::ios::app);
 }
 
-void club::clean(){
-	club::clean_s();
-}
+//void club::clean(){
+//	club::clean_s();
+//}
 
 void club::display()const{
 	//	club::fileclub.open("club.txt",std::ios::app);

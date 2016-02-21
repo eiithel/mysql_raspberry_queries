@@ -32,7 +32,7 @@ public:
 
 	static void clean_s();//erase content of fileclub
 
-	virtual void clean();
+//	virtual void clean();
 
 
 

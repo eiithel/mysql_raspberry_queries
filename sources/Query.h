@@ -17,6 +17,7 @@ typedef enum
 {
 	PET,
 	CLUB,
+	MPU
 
 } Table;
 
