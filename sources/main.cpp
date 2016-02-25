@@ -30,8 +30,6 @@ int main(){
 	signal(SIGINT, signalHandler); // if the user interrupts the process ctrl+C
 	signal(SIGTERM, signalHandler);// if the user kills the process
 
-	//MPU6050_table *mcu = new MPU6050_table;
-
 	printf("\nentree du programme");
 
 	Connect con;
@@ -39,33 +37,21 @@ int main(){
 
 	File vectFile;
 
-	Pet *p3 = new Pet;
-	Pet *p4= new Pet("TopL","Ethel","monkey","f","","");
+	MPU6050_table *mcu = new MPU6050_table;
 
-	club *c1 = new club;
-	club *c2 = new club(2,"julien");
-
-	vectFile.append(c1);
-	vectFile.append(c2);
-	vectFile.append(p3);
-	vectFile.append(p4);
-
-	vectFile.writeToFile();
-
-	Query query(con, PET, LOAD);
-	Query query2(con, CLUB, LOAD);
-
-	query2.send();
-	query.send();
+	Query query3(con,MPU,LOAD);
 
 	while(!stop){
-//		mcu->getData();
-//		vectFile.append(mcu);
-		sleep(60);//we record the data every minute.
+		mcu->getData();
+		vectFile.append(mcu);
+		vectFile.writeToFile();
+		query3.send();
+		sleep(10);//we record the data every minute.
 	}
 
 	printf("Exiting cleanly...\n");
 	con.close();
+	delete(mcu);
 	//trouver le moyen de vider tous les fichiers
 
 	return 0;

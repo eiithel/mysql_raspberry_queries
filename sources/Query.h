@@ -10,6 +10,8 @@
 
 #include "Connect.h"
 #include <string>
+#include <fstream>
+#include <ostream>
 
 //#define LOAD "LOAD DATA LOCAL INFILE"
 
@@ -49,6 +51,8 @@ private:
 	Table _table;
 	Type _type;
 	std::string _file;
+	std::ifstream _f;
+
 };
 
 #endif /* QUERY_H_ */

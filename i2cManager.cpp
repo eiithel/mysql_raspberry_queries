@@ -25,9 +25,9 @@ i2cManager::~i2cManager() {
 
 void i2cManager::connectBus(){
 
-	std::string filename = "/dev/i2c-1";
+	char* filename = "/dev/i2c-1";
 
-	if ((_fd = open(filename.c_str(), O_RDWR)) < 0) {
+	if ((_fd = open(filename, O_RDWR)) < 0) {
 		perror("Failed to open the i2c bus");
 		exit(1);
 	}

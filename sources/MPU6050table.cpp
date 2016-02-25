@@ -24,13 +24,16 @@ void MPU6050_table::clean_s(){
 	filempu.close();
 	filempu.open("./sources/mpu.txt", std::fstream::out | std::fstream::trunc);
 	filempu.close();
-	filempu.open("./sources/mpu.txt", std::ios::app);
 }
 
 
 void MPU6050_table::display()const{
 
+	filempu.open("./sources/mpu.txt",  std::fstream::out |std::ios::app);
+
 	MPU6050_table::filempu << this->_mdata;
+	filempu.close();
+
 }
 
 
@@ -40,6 +43,8 @@ std::ofstream& operator<<(std::ofstream& ofs, const MPU6050_table::mpu_t& c){
 
 	return ofs;
 }
+
+
 
 void MPU6050_table::getData(){
 	//TODO test

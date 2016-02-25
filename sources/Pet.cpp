@@ -32,7 +32,7 @@ void Pet::clean_s(){
 	filepet.close();
 	filepet.open("./sources/pet.txt", std::fstream::out | std::fstream::trunc);
 	filepet.close();
-	filepet.open("./sources/pet.txt", std::ios::app);
+//	filepet.open("./sources/pet.txt", std::ios::app);
 }
 
 //void Pet::clean(){
