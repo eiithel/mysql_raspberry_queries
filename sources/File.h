@@ -31,7 +31,7 @@ public:
 
 	void writeToFile();
 	void append(Tabmodel* c);
-	//void clean();//To erase content of the differents files. seg fault
+	void clean(char* filename);
 
 private:
 

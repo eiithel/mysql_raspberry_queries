@@ -9,42 +9,71 @@
 
 
 Pet::Pet(string n, string o, string sp,\
-		string sex, string b, string d){
+		string sex, string b, string d, char* f){
 	_mdata.name = n;
 	_mdata.owner = o;
 	_mdata.species = sp;
 	_mdata.sex = sex;
 	_mdata.birth = b;
 	_mdata.death = d;
+	_filename =f;
+
+	_filepet=new std::ofstream;
+	_filepet->open(_filename,std::ios_base::app);
+
+	if (_filepet->fail())
+	{
+		std::cerr <<"Can't open " << _filepet << std::endl;
+		exit(1);
+	}
+
 }
 
-Pet::Pet(pet_t data){
+Pet::Pet(pet_t data, char* f){
 	_mdata = data;
+	_filename =f;
+
+	_filepet=new std::ofstream;
+	_filepet->open(_filename,std::ios_base::app);
+
+	if (_filepet->fail())
+	{
+		std::cerr <<"Can't open " << _filepet << std::endl;
+		exit(1);
+	}
 }
 
-Pet::~Pet() {}
+Pet::~Pet() {
+	delete(_filepet);
+}
 
-static std::ofstream outp("./sources/pet.txt", std::ios::app);
-std::ofstream& Pet::filepet = outp;
 
 void Pet::clean_s(){
 
-	filepet.close();
-	filepet.open("./sources/pet.txt", std::fstream::out | std::fstream::trunc);
-	filepet.close();
-//	filepet.open("./sources/pet.txt", std::ios::app);
+
+	if(_filepet->is_open()){
+		_filepet->close();
+	}
+
+	if( remove( "./sources/pet.txt" ) != 0 )
+		perror( "Error deleting file\n" );
+	else
+		printf("fichier supprime\n");
+
+
 }
-
-//void Pet::clean(){
-//	Pet::clean_s();
-//}
-
 
 
 
 void Pet::display()const{
+	if(!_filepet->is_open()){
+		_filepet->open(_filename,std::ios_base::app);
+	}
 
-	Pet::filepet << this->_mdata;
+	if (_filepet!=NULL){
+		*(_filepet) << this->_mdata;
+	}
+	_filepet->close();
 }
 
 
@@ -54,3 +83,4 @@ std::ofstream& operator<<(std::ofstream& ofs, const Pet::pet_t& c){
 
 	return ofs;
 }
+

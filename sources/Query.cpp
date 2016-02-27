@@ -57,7 +57,6 @@ void Query::send(){
 
 	if(_type == LOAD){
 		ifstream n;
-		n.open("./sources/mpu.txt");
 		squery = "LOAD DATA LOCAL INFILE " + _file + "INTO TABLE " + stable;
 	}
 

@@ -17,9 +17,9 @@ public:
 		std::string name;
 	}club_t ;
 
-	club(club_t data ={ 1 ,"default" });
+	club(club_t data ={ 1 ,"default" }, char* filename = "./sources/club.txt");
 
-	club(int id, std::string name);
+	club(int id, std::string name, char* filename);
 
 	virtual ~club();
 
@@ -28,16 +28,17 @@ public:
 
 	friend std::ofstream& operator<<(std::ofstream& ofs, const club_t& c);
 
-	static std::ofstream& fileclub;
 
-	static void clean_s();//erase content of fileclub
+	void clean_s();//erase content of fileclub
 
-//	virtual void clean();
+	//	virtual void clean();
 
 
 
 private:
 	club_t _mdata;
+	std::ofstream* _fileclub;
+	char* _filename;
 
 };
 

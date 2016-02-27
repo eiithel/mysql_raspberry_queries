@@ -51,7 +51,6 @@ private:
 	Table _table;
 	Type _type;
 	std::string _file;
-	std::ifstream _f;
 
 };
 

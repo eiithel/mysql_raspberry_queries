@@ -13,6 +13,7 @@
 using namespace std;
 
 
+
 class Pet : public Tabmodel{
 public:
 
@@ -27,10 +28,10 @@ public:
 
 	};
 
-	Pet(pet_t data ={"fanny","sarah","cochon","f","1995-05-10", ""});//par defaut
+	Pet(pet_t data ={"fanny","sarah","cochon","f","1995-05-10", ""}, char* f = "./sources/pet.txt");//par defaut
 
 	Pet(string n, string o, string sp,\
-			string sex, string b, string d);
+			string sex, string b, string d, char* f="./sources/pet.txt");
 
 	virtual ~Pet();
 
@@ -39,20 +40,19 @@ public:
 
 	friend std::ofstream& operator<<(std::ofstream& ofs, const pet_t& c);
 
-	static std::ofstream& filepet;
 
-	static void clean_s();
+	void clean_s();
 
-//	virtual void clean();
+	//	virtual void clean();
 
 
 
 private:
 
 	pet_t _mdata;
-
+	std::ofstream* _filepet;
+	char* _filename;
 };
-
 
 
 #endif /* PET_H_ */

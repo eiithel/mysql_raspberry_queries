@@ -26,7 +26,7 @@ public:
 
 	};
 
-	MPU6050_table();
+	MPU6050_table(char* filename = "./sources/mpu.txt");
 	virtual ~MPU6050_table();
 
 	virtual void display()const;
@@ -35,14 +35,14 @@ public:
 
 	friend std::ofstream& operator<<(std::ofstream& ofs, const mpu_t& c);
 
-	static std::ofstream& filempu;
-
-	static void clean_s();
+	void clean_s();
 
 private:
 
 	mpu_t _mdata;
 	MPU6050 _mpu;
+	std::ofstream* _filempu;
+	char* _filename;
 
 };
 

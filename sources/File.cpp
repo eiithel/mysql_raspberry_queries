@@ -8,7 +8,6 @@
 #include "File.h"
 
 File::File(){
-
 }
 
 File::File(const File& f){
@@ -31,16 +30,22 @@ void File::writeToFile(){
 	for(auto it = _polvector.begin(); it!= _polvector.end(); it++){
 		(*it)->display();
 		delete((*it));
+
 	}
+	_polvector.clear();
 
 }
 
-//void Request::clean(){
+
+//void File::clean(char* filename){
+//	std::ofstream myfile;
+//	myfile.open(filename, ios::app);
+//	myfile.close();
+//	myfile.open(filename, std::fstream::out | std::fstream::trunc);
+//	//myfile.open("filename", std::fstream::out | std::fstream::trunc);
+//	myfile.close();
 //
-//	for(auto it = polvector.begin(); it!= polvector.end(); it++){
-//		(*it)->clean();
-//		delete((*it));
-//	}
 //}
+
 
 

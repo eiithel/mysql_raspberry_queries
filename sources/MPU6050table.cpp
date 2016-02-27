@@ -7,8 +7,18 @@
 
 #include "MPU6050table.h"
 
-MPU6050_table::MPU6050_table() {
-	// TODO Auto-generated constructor stub
+MPU6050_table::MPU6050_table(char* f) {
+
+	_filename =f;
+
+	_filempu=new std::ofstream;
+	_filempu->open(_filename,std::ios_base::app);
+
+	if (_filempu->fail())
+	{
+		std::cerr <<"Can't open " << _filempu << std::endl;
+		exit(1);
+	}
 
 }
 
@@ -16,23 +26,25 @@ MPU6050_table::~MPU6050_table() {
 	// TODO Auto-generated destructor stub
 }
 
-static std::ofstream outp("./sources/mpu.txt", std::ios::app);
-std::ofstream& MPU6050_table::filempu = outp;
 
 void MPU6050_table::clean_s(){
 
-	filempu.close();
-	filempu.open("./sources/mpu.txt", std::fstream::out | std::fstream::trunc);
-	filempu.close();
+	_filempu->close();
+	_filempu->open("./sources/mpu.txt", std::fstream::out | std::fstream::trunc);
+	_filempu->close();
 }
 
 
 void MPU6050_table::display()const{
 
-	filempu.open("./sources/mpu.txt",  std::fstream::out |std::ios::app);
+	if(!_filempu->is_open()){
+		_filempu->open(_filename,std::ios_base::app);
+	}
 
-	MPU6050_table::filempu << this->_mdata;
-	filempu.close();
+	if (_filempu!=NULL){
+		*(_filempu) << this->_mdata;
+	}
+	_filempu->close();
 
 }
 
