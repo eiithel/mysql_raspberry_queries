@@ -26,7 +26,6 @@ public:
 
 	virtual void display()const = 0;
 	virtual void clean_s()=0;
-	//virtual void clean();
 
 
 };

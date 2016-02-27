@@ -244,7 +244,7 @@ std::string MPU6050::getDate(){
 	time(&rawtime);
 	timeinfo = localtime(&rawtime);
 
-	stream << timeinfo->tm_hour <<"h "<<timeinfo->tm_min<<"mn "<<timeinfo->tm_sec <<"s";
+	stream << (timeinfo->tm_hour)+1 <<"h"<<timeinfo->tm_min<<"mn"<<timeinfo->tm_sec <<"s";
 	_realData.date = stream.str();
 	return _realData.date;
 }

@@ -24,4 +24,8 @@ The UML diagram pictured below is showing the relationship between each class of
 - [ ] Implementation on the raspberry Pi
 - [ ] The Web Part
 
+Here an example of what is recorded into the database:  
+# ax, ay, az, temp, date
+0.0480957, 0.000244141, 1.03394, 19, 18h21mn50s
+
 I hope that you'll enjoy the project! :green_heart:
