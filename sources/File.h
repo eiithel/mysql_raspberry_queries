@@ -17,8 +17,7 @@
 #include <vector>
 
 #include "Tabmodel.h"
-#include "club.h"
-#include "Pet.h"
+
 
 
 class File {

@@ -9,7 +9,7 @@
 #define SOURCES_MPU6050TABLE_H_
 
 #include "Tabmodel.h"
-#include "../MPU6050.h"
+#include "MPU6050.h"
 
 using namespace std;
 
