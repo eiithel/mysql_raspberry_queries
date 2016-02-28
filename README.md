@@ -19,10 +19,15 @@ The UML diagram pictured below is showing the relationship between each class of
  
 ### Progress of the project
  
-- [x] Write to the Database 
-- [x] Retrieve temperature from the sensor
-- [ ] Implementation on the raspberry Pi
-- [ ] The Web Part
+- [x] Write to the Database  
+- [x] Retrieve temperature from the sensor  
+- [x] Implementation on the raspberry Pi  
+- [x] The Web Part      
+
+And here is the information collected from the SQL database via a PHP script:  
+
+![](https://github.com/eiithel/mysql_raspberry_queries/blob/master/documents/infos.png)
+
 
 Here an example of what is recorded into the database:  
 # ax, ay, az, temp, date
