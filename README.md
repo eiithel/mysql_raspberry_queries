@@ -17,12 +17,6 @@ The UML diagram pictured below is showing the relationship between each class of
 
 ![](https://github.com/eiithel/mysql_raspberry_queries/blob/master/documents/UML_UML_queries.png)
  
-### Progress of the project
- 
-- [x] Write to the Database  
-- [x] Retrieve temperature from the sensor  
-- [x] Implementation on the raspberry Pi  
-- [x] The Web Part      
 
 And here is the information collected from the SQL database via a PHP script:  
 
